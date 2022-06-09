@@ -10,6 +10,7 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
     ProductosComponent,
     DetalleComponent,
     FavoritosComponent,
-    TarjetaComponent
+    TarjetaComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,7 @@ export class ProductosComponent implements OnInit {
 
   public lstProducts: IProduct[] = [];
 
-  constructor(private productService: ProductService, private router: Router, private storeService: StoreServiceService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -23,21 +23,8 @@ export class ProductosComponent implements OnInit {
   getProducts(){
     this.productService.getProducts().subscribe(p => {
       this.lstProducts = p;
-      console.log(this.lstProducts);
     });
   }
 
-  agregarFavorito(item: IProduct){
-    console.log(item)
-    if (item.favorito == false){
-      this.storeService.agregarFavorito(item);
-    }
-  }
-
-  quitarFavorito(item: IProduct){
-    if (item.favorito == true){
-      
-    }
-  }
 
 }

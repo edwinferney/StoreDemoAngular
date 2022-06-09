@@ -1,1 +1,22 @@
-<p>detalle works!</p>
+<button class="btn btn-lg btn-defaul">
+  <a [routerLink]="['/productos']"><< Regresar</a>
+  </button>
+<hr>
+<div *ngIf="item" class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{item.image}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">Category: {{item.category}}</p>
+          <p class="card-text">Rate: {{item.rating.rate}}</p>
+          <p class="card-text">Count: {{item.rating.count}}</p>
+          <p class="card-text"><small class="text-muted">Price: {{item.price | currency}}</small></p>
+          <p class="card-text" *ngIf="item.favorito">En Favoritos <button class="btn btn-link" (click)="quitarFavorito(item)" >Eliminar</button></p>
+          <p class="card-text" *ngIf="!item.favorito"><button class="btn btn-link" (click)="agregarFavorito(item)" >Agregar a favoritos</button></p>
+        </div>
+      </div>
+    </div>
+</div>

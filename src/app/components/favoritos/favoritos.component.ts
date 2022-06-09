@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IProduct } from 'src/app/models/iproduct';
+import { StoreServiceService } from 'src/app/services/store-service.service';
 
 @Component({
   selector: 'app-favoritos',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritosComponent implements OnInit {
 
-  constructor() { }
+  public lstProducts: IProduct[] = [];
+
+  constructor(private storeServie:StoreServiceService) { }
 
   ngOnInit(): void {
+
+    this.lstProducts = this.storeServie.getFavoritos();
+    
   }
 
 }

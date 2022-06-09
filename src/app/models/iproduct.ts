@@ -9,5 +9,5 @@ export interface IProduct {
         rate: number;
         count: number;
     }; 
-    favorito: boolean  
+    favorito: boolean;  
 }
