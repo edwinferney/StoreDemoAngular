@@ -11,8 +11,11 @@ import { StoreServiceService } from 'src/app/services/store-service.service';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
-
+  s: string="";
   public lstProducts: IProduct[] = [];
+
+  SortbyParam = '';
+  SortDirection = 'asc';
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -24,6 +27,19 @@ export class ProductosComponent implements OnInit {
     this.productService.getProducts().subscribe(p => {
       this.lstProducts = p;
     });
+  }
+
+  
+  setFilter(filter: string){
+    this.s = filter;
+  }
+
+  onSortDirection(){
+    if (this.SortDirection === 'desc'){
+      this.SortDirection = 'asc';
+    }else{
+      this.SortDirection = 'desc';
+    }
   }
 
 

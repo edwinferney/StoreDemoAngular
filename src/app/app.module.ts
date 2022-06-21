@@ -11,6 +11,10 @@ import { DetalleComponent } from './components/detalle/detalle.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { SortPipe } from './pipes/sort.pipe';
+import { SearchPipe } from './pipes/search.pipe';
+import { LoginComponent } from './components/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +23,10 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     DetalleComponent,
     FavoritosComponent,
     TarjetaComponent,
-    MainPageComponent
+    MainPageComponent,
+    SortPipe,
+    SearchPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,11 @@
-<div *ngIf="item" class="card shadow-sm">
+
+
+<ng-template [ngIf]="showButtonDetail">
+  <div *ngIf="item" class="card shadow-sm">
     <img src="{{item.image}}" class="card-img-top" alt="...">
 
     <div class="card-body">
-      <p class="card-text">{{item.description}}</p>
+      <p class="card-text">{{item.title}}</p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
           <button type="button" class="btn btn-sm btn-outline-secondary" *ngIf="showButtonDetail" (click)="irAdetalle(item)">Detalle</button>
@@ -14,3 +17,28 @@
       </div>
     </div>
   </div>
+</ng-template>
+<ng-template [ngIf]="!showButtonDetail">
+  <button class="btn btn-lg btn-defaul">
+    <a [routerLink]="['/productos']"><< Regresar</a>
+    </button>
+  <hr>
+  <div *ngIf="item" class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{item.image}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <p class="card-text">Category: {{item.category}}</p>
+            <p class="card-text">Rate: {{item.rating.rate}}</p>
+            <p class="card-text">Count: {{item.rating.count}}</p>
+            <p class="card-text"><small class="text-muted">Price: {{item.price | currency}}</small></p>
+            <p class="card-text" *ngIf="item.favorito">En Favoritos <button class="btn btn-link" (click)="quitarFavorito(item)" >Eliminar</button></p>
+            <p class="card-text" *ngIf="!item.favorito"><button class="btn btn-link" (click)="agregarFavorito(item)" >Agregar a favoritos</button></p>
+          </div>
+        </div>
+      </div>
+  </div> 
+</ng-template>

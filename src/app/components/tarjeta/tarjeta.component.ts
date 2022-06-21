@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/models/iproduct';
+import { ProductService } from 'src/app/services/product.service';
 import { StoreServiceService } from 'src/app/services/store-service.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { StoreServiceService } from 'src/app/services/store-service.service';
   templateUrl: './tarjeta.component.html',
   styleUrls: ['./tarjeta.component.css']
 })
-export class TarjetaComponent implements OnInit {
+export class TarjetaComponent implements OnInit, OnChanges {
 
   @Input()
   item!: IProduct
@@ -19,15 +20,22 @@ export class TarjetaComponent implements OnInit {
   @Output()
   itemEmmitter: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 
-  constructor(private route:Router,private storeService: StoreServiceService) { }
+
+  constructor(private route: Router, private storeService: StoreServiceService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.item.favorito! = this.storeService.estaEnFavorito(this.item);
+    if (this.showButtonDetail===false){
+      console.log(this.item)
+    }
+  }
 
   ngOnInit(): void {
 
-    if (this.item != undefined){
-      this.item.favorito = this.storeService.estaEnFavorito(this.item);
-    }
-   
+
   }
+
+
 
 
   agregarFavorito(item: IProduct){    
@@ -39,8 +47,8 @@ export class TarjetaComponent implements OnInit {
   }
 
   irAdetalle(item: IProduct){
-    console.log(item.id)
     this.route.navigate(['/detalle',item.id]);
   }
+
 
 }

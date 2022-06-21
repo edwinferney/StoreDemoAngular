@@ -1,8 +1,26 @@
+<div class="row mb-3">
+  <div class="col-sm-6 col-lg-8 themed-grid-col">
+      <input class="form-control" type="text" id="search" name="search" #search (keyup)="setFilter(search.value)" placeholder="Title product..."/> 
+  </div>
+  <div class="col-6 col-lg-4 themed-grid-col">
+      <div class="input-group">
+          <select [(ngModel)]="SortbyParam" class="form-control">
+              <option value="" selected>Seleccione Orden...</option>
+              <option value="title">Title</option>
+              <option value="price">Precio</option>
+          </select>
+          <button type="button" (click)="onSortDirection()" class="btn btn-primary">
+              <i *ngIf="SortDirection === 'asc'" class="fas fa-sort-alpha-down">Asc</i>
+              <i *ngIf="SortDirection === 'desc'" class="fas fa-sort-alpha-up">Desc</i>
+          </button>
+      </div>
+  </div>
+</div>
 <div class="album py-5 bg-light">
     <div class="container">
-
+      <hr>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" *ngFor="let item of lstProducts">
+        <div class="col" *ngFor="let item of lstProducts | search: s | sort: [SortbyParam, SortDirection]">
           <app-tarjeta [item]="item" ></app-tarjeta>
         </div>
               

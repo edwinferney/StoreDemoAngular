@@ -1,0 +1,23 @@
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Title</td>
+            <td>Precio</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of lstProducts">
+            <td>{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.price | currency}}</td>
+            <td>
+                <div class="btn-group   !spacing" role="group" aria-label="Basic example">
+                    <button class="btn btn-primary" (click)="edit(item)">Editar</button>
+                    <button class="btn btn-danger" (click)="delete(item)">Eliminar</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
